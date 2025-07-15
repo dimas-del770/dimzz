@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>HD BRUTAL DETAIL SEIMBANG - Dimzz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif;}
+    body, html {height: 100%; overflow: hidden;}
+    video.bg-video {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+    #login-box, #main-content {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.6);
+      padding: 30px;
+      border-radius: 12px;
+      color: #00ffe1;
+      text-align: center;
+      box-shadow: 0 0 20px #00ffe1;
+      width: 90%;
+      max-width: 400px;
+    }
+    #login-box input, #login-box button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    #login-box button {
+      background: #00ffe1;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #main-content {
+      display: none;
+      background: none;
+      max-width: unset;
+      width: 100%;
+      height: 100%;
+      color: white;
+      overflow-y: auto;
+    }
+    .container {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 25px;
+      color: #ff4c4c;
+      text-shadow: 0 0 10px #ff4c4c88, 0 0 20px #ff4c4c55;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #ff4c4c44; }
+      to { text-shadow: 0 0 15px #ff4c4c; }
+    }
+    input[type="file"] {
+      padding: 14px;
+      border-radius: 8px;
+      background: #1a1a1a;
+      color: #fff;
+      border: 2px solid #444;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    button.process-btn {
+      padding: 12px 28px;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #ff4c4c, #ff1a1a);
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff1a1a88;
+      transition: all 0.3s ease;
+    }
+    button.process-btn:hover {
+      background: linear-gradient(135deg, #ff1a1a, #cc0000);
+      box-shadow: 0 0 20px #ff1a1aaa;
+      transform: scale(1.05);
+    }
+    .image-area {
+      margin-top: 30px;
+      animation: fadeIn 1s ease forwards;
+    }
+    .image-area img {
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(255, 80, 80, 0.5);
+      transition: all 0.4s ease;
+    }
+    .note {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #ccc;
+      font-style: italic;
+      text-shadow: 0 0 3px #ff4c4c44;
+    }
+    .hidden {
+      display: none;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Video -->
+  <video id="bgVideo" class="bg-video" autoplay loop controls>
+    <source src="https://files.catbox.moe/8lqrhh.mp4" type="video/mp4">
+  </video>
+
+  <!-- Login Box -->
+  <div id="login-box">
+    <h2>Login HD Brutal</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="checkLogin()">Masuk</button>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content">
+    <div class="container">
+      <h1>💎 HD BRUTAL DETAIL - SEIMBANG 💎</h1>
+      <input type="file" id="imageInput" accept="image/*"><br>
+      <button class="process-btn" onclick="applyHD()">🚀 Tampilkan & Proses HD</button>
+      <div class="image-area hidden" id="imageArea">
+        <br>
+        <img id="outputImage" src="" alt="Hasil HD Brutal"><br><br>
+        <button class="process-btn" onclick="downloadImage()">⬇️ Unduh Hasil ke Galeri</button>
+        <div class="note">* Efek Brutal Seimbang: tajam, jernih, tidak terlalu terang & tidak terlalu gelap</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function checkLogin() {
+      const video = document.getElementById("bgVideo");
+
+      // Play video saat tombol login diklik, apapun hasilnya
+      if (video.paused) {
+        video.play().catch(e => {
+          console.log("Gagal autoplay video:", e);
+        });
+      }
+
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value.trim();
+
+      if (user === "dimzz" && pass === "dimzz hd") {
+        document.getElementById("login-box").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+      } else {
+        alert("Username atau password salah!");
+      }
+    }
+
+    const input = document.getElementById("imageInput");
+    const img = document.getElementById("outputImage");
+    const imageArea = document.getElementById("imageArea");
+
+    function applyHD() {
+      const file = input.files[0];
+      if (!file) {
+        alert("Pilih gambar terlebih dahulu.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        img.src = e.target.result;
+        img.onload = () => {
+          imageArea.classList.remove("hidden");
+          img.style.filter = `
+            brightness(1.05)
+            contrast(1.5)
+            saturate(1.45)
+            drop-shadow(0 0 4px #ff1a1a)
+          `;
+        };
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function downloadImage() {
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d");
+
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+
+      context.filter = getComputedStyle(img).filter;
+      context.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      canvas.toBlob(function(blob) {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "HD_BRUTAL_DETAIL.jpg";
+        a.target = "_blank";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        alert("✅ Gambar HD akan segera diunduh melalui Chrome.");
+      }, "image/jpeg", 1.0);
+    }
+  </script>
+</body>
+</html>
